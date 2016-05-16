@@ -25,10 +25,20 @@
         </js-module>
 
         <!-- Option1: linking Windows Runtime component as project reference -->
-       <framework src="WinRTCproj/EchoRuntimeComponent.vcxproj" custom="true" type="projectReference"/>
+        <!-- <framework src="WinRTCproj/EchoRuntimeComponent.vcxproj" custom="true" type="projectReference"/> -->
 
-       <!-- Option2: linking compiled binaries -->
-       <!--<framework src="src/windows8/EchoRuntimeComponent.winmd" custom="true"/> -->
+        <!-- Option2: linking compiled binaries -->
+        <framework arch="x64" src="src/windows/lib/x64/EchoRuntimeComponent.winmd" custom="true" target-dir="x64"/>
+        <framework arch="x86" src="src/windows/lib/x86/EchoRuntimeComponent.winmd" custom="true" target-dir="x86"/>
+        <framework arch="arm" src="src/windows/lib/arm/EchoRuntimeComponent.winmd" custom="true" target-dir="arm"/>
+
+        <!-- Script below handles implementation DLLs (copies dlls to appropriate archs specific folders) -->
+        <hook type="after_plugin_install" src="scripts/afterPluginInstall.js" />
+
+        <!-- Microsoft Visual C++ Runtime is required to load native components -->
+        <lib-file src="Microsoft.VCLibs, Version=12.0" versions="8.1" />
+        <lib-file src="Microsoft.VCLibs.120, Version=14.0" versions="10" />
+
     </platform>
 
 </plugin>
