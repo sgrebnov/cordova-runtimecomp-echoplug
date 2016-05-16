@@ -18,13 +18,17 @@
         <clobbers target="window.echoplugin" />
     </js-module>
 
-    <!-- windows8 -->
-    <platform name="windows8">
-        <js-module src="src/windows8/echopluginProxy2.js" name="EchoProxy">
+    <!-- windows -->
+    <platform name="windows">
+        <js-module src="src/windows/echopluginProxy2.js" name="EchoProxy">
             <merges target="" />
         </js-module>
-        <!--<framework src="src/windows8/EchoRuntimeComponent.winmd" custom="true"/> -->
+
+        <!-- Option1: linking Windows Runtime component as project reference -->
        <framework src="WinRTCproj/EchoRuntimeComponent.vcxproj" custom="true" type="projectReference"/>
+
+       <!-- Option2: linking compiled binaries -->
+       <!--<framework src="src/windows8/EchoRuntimeComponent.winmd" custom="true"/> -->
     </platform>
-        
+
 </plugin>
